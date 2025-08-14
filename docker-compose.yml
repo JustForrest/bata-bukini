@@ -1,11 +1,3 @@
 version: '3.8'
 services:
-  mcp-gateway:
-    image: docker/mcp-gateway:latest
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./docker/mcp-config:/config
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - GITHUB_TOKEN=${GITHUB_TOKEN}
+  # MCP Gateway removed - not needed without Atlas Docs server
