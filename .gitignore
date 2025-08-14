@@ -1,0 +1,22 @@
+# Docker
+**/.dockerignore
+**/docker-compose.override.yml
+.env.local
+.env.*.local
+
+# Goose
+.goose/
+goose-logs/
+**/*goose*output*
+
+# Gemini CLI
+.gemini/
+gemini-cache/
+
+# MCP
+mcp-config/secrets.yaml
+**/*token*
+**/*secret*
+
+# macOS
+.DS_Store
