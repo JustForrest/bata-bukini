@@ -21,4 +21,5 @@ WORKDIR /workspace
 
 RUN npm install -g @google/gemini-cli
 
-CMD ["gemini"]
+# THIS IS THE KEY FIX - Set gemini as the entrypoint
+ENTRYPOINT ["gemini"]
