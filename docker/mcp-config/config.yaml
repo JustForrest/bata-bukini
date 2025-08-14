@@ -1,5 +1,3 @@
-servers:
+mcpServers:
   atlas-docs:
     enabled: true
-    image: "mcp/atlas-docs"
-    environment: {}
