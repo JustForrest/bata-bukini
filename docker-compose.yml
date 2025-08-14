@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  mcp-gateway:
+    image: docker/mcp-gateway:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./docker/mcp-config:/config
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
