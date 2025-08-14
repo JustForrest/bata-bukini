@@ -1,6 +1,5 @@
 servers:
   atlas-docs:
-    command: "npx"
-    args: ["-y", "@modelcontextprotocol/server-atlas-docs"]
-    env:
-      # Atlas Docs server doesn't require special environment variables
+    enabled: true
+    image: "mcp/atlas-docs"
+    environment: {}
