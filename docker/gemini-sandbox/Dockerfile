@@ -1,6 +1,7 @@
 FROM arm64v8/alpine:3.14
 
 RUN apk add --no-cache \
+  nodejs npm \
   python3 py3-pip \
   make g++ git \
   curl wget jq bc \
