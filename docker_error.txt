@@ -1,0 +1,255 @@
+user@Mac kasmweb % docker run -it --rm -p 5900:5900 \
+  -e DISPLAY=:0 \
+  --shm-size=2g \
+  kasmweb/chromium:1.14.0-arm64
+Unable to find image 'kasmweb/chromium:1.14.0-arm64' locally
+docker: Error response from daemon: failed to resolve reference "docker.io/kasmweb/chromium:1.14.0-arm64": docker.io/kasmweb/chromium:1.14.0-arm64: not found
+
+Run 'docker run --help' for more information
+user@Mac kasmweb % docker run -it --rm -p 6080:6080 \
+  -e VNC_PW=password \
+  --shm-size=512m \
+  kasmweb/chrome:latest
+Unable to find image 'kasmweb/chrome:latest' locally
+docker: Error response from daemon: failed to resolve reference "docker.io/kasmweb/chrome:latest": docker.io/kasmweb/chrome:latest: not found
+
+Run 'docker run --help' for more information
+user@Mac kasmweb % # Try without specifying latest tag first
+docker run -it --rm -p 6080:6080 \
+  -e VNC_PW=password \
+  --shm-size=512m \
+  kasmweb/chrome
+zsh: command not found: #
+Unable to find image 'kasmweb/chrome:latest' locally
+docker: Error response from daemon: failed to resolve reference "docker.io/kasmweb/chrome:latest": docker.io/kasmweb/chrome:latest: not found
+
+Run 'docker run --help' for more information
+user@Mac kasmweb % docker run -it --rm -p 6080:6080 \       
+  -e VNC_PW=password \
+  --shm-size=512m \
+  kasmweb/chrome
+Unable to find image 'kasmweb/chrome:latest' locally
+docker: Error response from daemon: failed to resolve reference "docker.io/kasmweb/chrome:latest": docker.io/kasmweb/chrome:latest: not found
+
+Run 'docker run --help' for more information
+user@Mac kasmweb % # Use the stable version 1.17.0
+docker run --rm -it --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/chrome:1.17.0
+zsh: command not found: #
+Unable to find image 'kasmweb/chrome:1.17.0' locally
+1.17.0: Pulling from kasmweb/chrome
+8972601fa8a2: Pulling fs layer 
+6fc7677e87de: Pulling fs layer 
+2043d8793233: Pulling fs layer 
+897d080286eb: Pulling fs layer 
+d529602ba013: Pulling fs layer 
+4f4fb700ef54: Pulling fs layer 
+d529602ba013: Pull complete 
+79b69168fb41: Pull complete 
+8dc884fda4c5: Pull complete 
+f3c7f701efed: Pull complete 
+23cb8906b195: Pull complete 
+7731a4f7dc0c: Pull complete 
+f3fcb84f840f: Pull complete 
+9a55ba4cbb4e: Pull complete 
+196d2c6633f3: Pull complete 
+36529c8cea84: Pull complete 
+b04ac5161cb3: Pull complete 
+Digest: sha256:1dd754dd8fdc2c933851afd98ce39473e8298496b0fcab654be40bf66d46c13f
+Status: Downloaded newer image for kasmweb/chrome:1.17.0
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
++ DEFAULT_PROFILE_HOME=/home/kasm-default-profile
++ PROFILE_SYNC_DIR=/kasm_profile_sync
++ '[' -f /home/kasm-user/.bashrc ']'
++ echo 'Profile Sync Directory Does Not Exist. No Sync will occur'
+Profile Sync Directory Does Not Exist. No Sync will occur
++ copy_default_profile_to_home
++ echo 'Copying default profile to home directory'
+Copying default profile to home directory
++ cp -rp /home/kasm-default-profile/. /home/kasm-user/
++ ls -la /home/kasm-user
+total 28
+drwxrwxrwx 1 kasm-user root      4096 Apr  6 03:53 .
+drwxr-xr-x 1 root      root      4096 Apr  4 18:32 ..
+-rw-rw-rw- 1 kasm-user kasm-user   43 Apr  4 18:31 .bashrc
+drwxrwxrwx 3 kasm-user kasm-user 4096 Apr  4 18:23 .config
+drwxrwxrwx 2 kasm-user kasm-user 4096 Apr  6 03:53 Desktop
+drwxrwxrwx 3 kasm-user kasm-user 4096 Apr  4 18:31 .pki
++ verify_profile_config
++ echo 'Verifying Uploads/Downloads Configurations'
+Verifying Uploads/Downloads Configurations
++ mkdir -p /home/kasm-user/Uploads
++ '[' -d /home/kasm-user/Desktop/Uploads ']'
++ echo 'Creating Uploads Desktop Symlink'
+Creating Uploads Desktop Symlink
++ ln -sf /home/kasm-user/Uploads /home/kasm-user/Desktop/Uploads
++ mkdir -p /home/kasm-user/Downloads
++ '[' -d /home/kasm-user/Desktop/Downloads ']'
++ echo 'Creating Download Desktop Symlink'
+Creating Download Desktop Symlink
++ ln -sf /home/kasm-user/Downloads /home/kasm-user/Desktop/Downloads
+++ readlink -f /usr/share/kasmvnc/www/Downloads/Downloads
++ [[ /home/kasm-user/Downloads != \/\h\o\m\e\/\k\a\s\m\-\u\s\e\r\/\D\o\w\n\l\o\a\d\s ]]
++ echo 'Downloads RX Symlink Exists'
+Downloads RX Symlink Exists
++ ls -la /home/kasm-user/Desktop
+total 20
+drwxrwxrwx 2 kasm-user kasm-user 4096 Aug 17 02:04 .
+drwxrwxrwx 1 kasm-user root      4096 Aug 17 02:04 ..
+lrwxrwxrwx 1 kasm-user kasm-user   25 Aug 17 02:04 Downloads -> /home/kasm-user/Downloads
+-rwxrwxrwx 1 kasm-user kasm-user 8494 Apr  6 03:53 google-chrome.desktop
+lrwxrwxrwx 1 kasm-user kasm-user   23 Aug 17 02:04 Uploads -> /home/kasm-user/Uploads
++ rm -rf /home/kasm-user/.config/pulse
++ echo -e '\n\n------------------ EXECUTE COMMAND ------------------'
+
+
+------------------ EXECUTE COMMAND ------------------
++ echo 'Executing command: '\''/dockerstartup/vnc_startup.sh' /dockerstartup/kasm_startup.sh '--wait'\'''
+Executing command: '/dockerstartup/vnc_startup.sh /dockerstartup/kasm_startup.sh --wait'
++ exec /dockerstartup/vnc_startup.sh /dockerstartup/kasm_startup.sh --wait
+.....+............+......+...+..+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*..+......+.+...+...+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*...+........+.......+.....+......+.+........+......+......+................+..+.+.....+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+......+............+...+..+.+..+.......+.....+...+...+...+.......+.....+....+.........+..+..........+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.+..+...+.......+............+.....+.+...........+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.+.+............+..+....+..+............+.+..+....+...+...........+.+........+.+.....+....+..+...+.............+............+...............+........+.......+............+.....+...+.+............+..+............+...+......+.+......+.....+.........+.+...+..+....+........+.+......+......+..+.......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-----
+2025-08-17T02:04:24Z DEBUG (vnc_startup.sh): Starting KasmVNC
+Creating default config /home/kasm-user/.vnc/kasmvnc.yaml
+xauth:  file /home/kasm-user/.Xauthority does not exist
+
+New 'fa7e71b85d5e:1 (kasm-user)' desktop is fa7e71b85d5e:1
+
+Users configured:
+kasm_viewer (can only view)
+kasm_user (can use keyboard and mouse, add/remove users)
+
+Log file is /home/kasm-user/.vnc/fa7e71b85d5e:1.log
+
+Starting applications specified in /home/kasm-user/.vnc/xstartup
+
+Paste this url in your browser:
+https://172.17.0.2:6901
+Disabling X Screensaver Functionality
+server does not have extension for -dpms option
+Keyboard Control:
+  auto repeat:  on    key click percent:  0    LED mask:  00000000
+  XKB indicators:
+    00: Caps Lock:   off    01: Num Lock:    off    02: Scroll Lock: off
+    03: Compose:     off    04: Kana:        off    05: Sleep:       off
+    06: Suspend:     off    07: Mute:        off    08: Misc:        off
+    09: Mail:        off    10: Charging:    off    11: Shift Lock:  off
+    12: Group 2:     off    13: Mouse Keys:  off
+  auto repeat delay:  660    repeat rate:  25
+  auto repeating keys:  00ffffffdffffbbf
+                        fadfffefffedffff
+                        9fffffffffffffff
+                        fff7ffffffffffff
+  bell percent:  50    bell pitch:  400    bell duration:  100
+Pointer Control:
+  acceleration:  2/1    threshold:  4
+Screen Saver:
+  prefer blanking:  yes    allow exposures:  yes
+  timeout:  0    cycle:  600
+Colors:
+  default colormap:  0x20    BlackPixel:  0x0    WhitePixel:  0xffffff
+Font Path:
+  /usr/share/fonts/X11//misc,/usr/share/fonts/X11//Type1,built-ins
+DPMS (Energy Star):
+  Server does not have the DPMS Extension
+
+------------------ Xfce4 window manager startup------------------
+Starting XFCE
+
+------------------ Openbox window manager startup------------------
+Skipping OpenBox Startup
+
+------------------ KDE window manager startup------------------
+Skipping KDE Startup
+/usr/bin/startxfce4: X server already running on display :1
+2025-08-17T02:04:34Z DEBUG (vnc_startup.sh): Starting audio websocket server
+2025-08-17T02:04:34Z DEBUG (vnc_startup.sh): Starting audio server
+Starting Pulse
+Starting audio service
+
+------------------ Started Audio Out  ----------------------------
+Kasm Audio Out PID: 291
+2025-08-17T02:04:34Z DEBUG (vnc_startup.sh): Starting audio input server
+2025-08-17T02:04:34Z DEBUG (vnc_startup.sh): Starting upload server
+2025-08-17T02:04:34Z DEBUG (vnc_startup.sh): Starting gamepad server
+2025-08-17T02:04:34Z DEBUG (vnc_startup.sh): Starting printer service
+
+
+------------------ KasmVNC environment started ------------------
+ 2025-08-17 02:04:33,238 [INFO] vncext: Listening to unix relay socket printer
+ 2025-08-17 02:04:33,261 [INFO] vncext: Listening for websocket connections on 0.0.0.0 interface(s), port 6901
+ 2025-08-17 02:04:33,268 [DEBUG] VNCServerST: creating single-threaded server fa7e71b85d5e:1 (kasm-user)
+ 2025-08-17 02:04:33,268 [INFO] VNCServerST: CPU capability: SSE2 yes, AVX512f no
+ 2025-08-17 02:04:33,274 [INFO] vncext: created VNC server for screen 0
+ 2025-08-17 02:04:33,812 [INFO] Input: Mouse horizonatl scroll factor: 50.000000
+ 2025-08-17 02:04:33,813 [INFO] Input: Mouse vertical scroll factor: 50.000000
+[mi] mieq: warning: overriding existing handler (nil) with 0x5555556b29d0 for event 2
+[mi] mieq: warning: overriding existing handler (nil) with 0x5555556b29d0 for event 3
+Running /home/kasm-user/.vnc/xstartup
+2025-08-17T02:04:34Z INFO (vnc_startup.sh): Kasm User () started container id fa7e71b85d5e with local IP address 172.17.0.2
+2025-08-17T02:04:34Z DEBUG (vnc_startup.sh): Executed custom startup script.
++ START_COMMAND=google-chrome
++ PGREP=chrome
++ MAXIMIZE=true
++ DEFAULT_ARGS=
++ [[ true == \t\r\u\e ]]
++ DEFAULT_ARGS+=' --start-maximized'
++ ARGS=' --start-maximized'
+++ getopt -o gau: -l go,assign,url: -n /dockerstartup/custom_startup.sh --
++ options=' --'
++ eval set -- ' --'
+++ set -- --
++ [[ -- != -- ]]
++ shift
++ FORCE=
++ '[' -n '' ']'
++ '[' -n '' ']'
++ kasm_startup
++ '[' -n '' ']'
++ '[' -z '' ']'
++ URL=
++ '[' -z '' ']'
++ echo 'Entering process startup loop'
+Entering process startup loop
++ set +x
+filter is not configured
+Listening for incomming MPEG-TS Stream on https://127.0.0.1:8081/<secret>
+Awaiting WebSocket connections on wss://127.0.0.1:4901/
+Stream Connected: ::ffff:127.0.0.1:37844
+_IceTransmkdir: ERROR: euid != 0,directory /tmp/.ICE-unix will not be created.
+xfce4-session: No SSH authentication agent found
+gpg-agent[438]: directory '/home/kasm-user/.gnupg' created
+gpg-agent[438]: directory '/home/kasm-user/.gnupg/private-keys-v1.d' created
+gpg-agent[441]: gpg-agent (GnuPG) 2.2.27 started
+ 2025-08-17 02:04:38,680 [DEBUG] Selection: Selection owner change for WM_S0
+
+(xfsettingsd:489): libupower-glib-WARNING **: 02:04:39.648: Couldn't connect to proxy: Could not connect: No such file or directory
+ 2025-08-17 02:04:39,045 [DEBUG] Selection: Selection owner change for XFWM4_COMPOSITING_MANAGER
+ 2025-08-17 02:04:39,614 [DEBUG] Selection: Selection owner change for _XSETTINGS_S0
+Failed to unload module: Module module-pipe-source not loaded
+ 2025-08-17 02:04:40,687 [DEBUG] WebUdp: UDP listening on port 6901
+
+(xfce4-session:238): xfce4-session-WARNING **: 02:04:41.085: Unable to launch "xfce4-panel": Failed to execute child process “xfce4-panel” (No such file or directory)
+ 2025-08-17 02:04:41,093 [DEBUG] Selection: Selection owner change for CLIPBOARD_MANAGER
+INFO:KasmPrintingService:Watching for PDF documents at /home/kasm-user/PDF
+service.py:79: DeprecationWarning: There is no current event loop
+ERROR:KasmGamepadServer:Failed to connect input (/dev/input/event0) : [Errno 2] No such file or directory: '/dev/input/event0'
+ERROR:KasmGamepadServer:Failed to connect input (/dev/input/event1) : [Errno 2] No such file or directory: '/dev/input/event1'
+ERROR:KasmGamepadServer:Failed to connect input (/dev/input/event2) : [Errno 2] No such file or directory: '/dev/input/event2'
+ERROR:KasmGamepadServer:Failed to connect input (/dev/input/event3) : [Errno 2] No such file or directory: '/dev/input/event3'
+ * Serving Flask app 'kasm_upload_server'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:4902
+ * Running on https://172.17.0.2:4902
+Press CTRL+C to quit
+
+** (xfdesktop:662): WARNING **: 02:04:50.445: Failed to get system bus: Could not connect: No such file or directory
+ 2025-08-17 02:04:50,392 [DEBUG] Selection: Selection owner change for XFDESKTOP_SELECTION_0
+ 2025-08-17 02:04:50,392 [DEBUG] Selection: Selection owner change for _NET_DESKTOP_MANAGER_S0
+
+** (xiccd:770): CRITICAL **: 02:04:57.280: Failed to connect to colord: Could not connect: No such file or directory
+
+(polkit-gnome-authentication-agent-1:761): polkit-gnome-1-WARNING **: 02:04:57.405: Error getting authority: Error initializing authority: Could not connect: No such file or directory
+
